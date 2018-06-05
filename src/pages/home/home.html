@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Entrar</h2>
+  <ion-item >
+    <ion-label stacked>Usuário</ion-label>
+    <ion-input type="text" #usuario></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Senha</ion-label>
+    <ion-input type="password" #senha></ion-input>
+  </ion-item>
+  <button ion-button block (click)="entrar()">Logar</button>
+</ion-content>
