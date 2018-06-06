@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DicasPage } from '../dicas/dicas';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -17,7 +17,7 @@ export class RegistroPage {
   constructor(private formBuilder: FormBuilder,
     private navCtrl: NavController, 
     public navParams: NavParams,
-    public fireAuth: AngularFireAuth,
+    private auth: AuthProvider,
     private alertCtrl: AlertController,
     private toastCtrl: ToastController) {
 
@@ -31,7 +31,7 @@ export class RegistroPage {
     }
 
   registrar() {
-    this.fireAuth.auth.createUserWithEmailAndPassword(
+    this.auth.criarUsuarioComEmailESenha(
       this.loginForm.get('email').value,
       this.loginForm.get('password').value)
         .then(response => {

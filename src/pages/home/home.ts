@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { DicasPage } from '../dicas/dicas';
 import { RegistroPage } from '../registro/registro';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +15,7 @@ export class HomePage {
 
   constructor(private formBuilder: FormBuilder,
               private navCtrl: NavController,
-              private fireAuth: AngularFireAuth,
+              private auth: AuthProvider,
               private alertCtrl: AlertController,
               private toastCtrl: ToastController,
               private loadingCtrl: LoadingController) {
@@ -34,7 +34,7 @@ export class HomePage {
 
     loading.present();
 
-    this.fireAuth.auth.signInWithEmailAndPassword(
+    this.auth.loginComEmail(
       this.loginForm.get('email').value, 
       this.loginForm.get('password').value)
         .then( (sucesso) => {

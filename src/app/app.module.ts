@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { DicasPageModule } from '../pages/dicas/dicas.module';
 import { DicasPage } from '../pages/dicas/dicas';
 import { RegistroPageModule } from '../pages/registro/registro.module';
+import { AuthProvider } from '../providers/auth/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAFqjLYrM6wWQKuflEd5BM_fqgbMghqzlQ",
@@ -43,7 +44,8 @@ const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthProvider
   ]
 })
 export class AppModule {}
