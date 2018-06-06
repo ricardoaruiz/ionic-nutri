@@ -1,20 +1,24 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
   <h2>Entrar</h2>
-  <ion-item >
-    <ion-label stacked>Usuário</ion-label>
-    <ion-input type="text" #usuario></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label stacked>Senha</ion-label>
-    <ion-input type="password" #senha></ion-input>
-  </ion-item>
-  <button ion-button block (click)="entrar()">Logar</button>
+  <form [formGroup]="loginForm">
+    <ion-item >
+      <ion-label stacked>Usuário1</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors">
+      <ion-label class="msg-validacao" *ngIf="loginForm.controls['email'].errors.required">Email obrigatório</ion-label>
+      <ion-label class="msg-validacao" *ngIf="!loginForm.controls['email'].errors.required && loginForm.controls['email'].errors.email">Email inválido</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Senha</ion-label>
+      <ion-input type="password" formControlName="password" maxlength="6"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors">
+        <ion-label class="msg-validacao">A senha deve conter 6 caracteres</ion-label>
+    </ion-item>
+
+    <button ion-button block (click)="entrar()" [disabled]="!loginForm.valid">Ok</button>
+    <button ion-button block (click)="registrar()">Cadastre-se</button>
+  </form>
 </ion-content>
