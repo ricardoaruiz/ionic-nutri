@@ -1,5 +1,9 @@
 page-home {
 
+    h2 {
+        text-align: center;
+    }
+
     ng-invalid {
         border-bottom: 1px solid red;
     }
@@ -7,6 +11,39 @@ page-home {
     .msg-validacao {
         font-size: 1.2rem;
         color: red;
+    }
+
+    .logo {
+        width: auto;
+        margin: auto;
+        display: block;
+        max-width: 30%;
+        padding-top: 20px;
+    }
+
+    .textos {
+        color: #000;
+        background: none;
+        text-align: center;
+
+        a {
+            color: #000;
+        }
+    }
+
+    .botao {
+        margin-top: 20px;
+        border-radius: 30px;
+    }
+
+    ion-item {
+        border-radius: 30px;
+        padding-left: 10px;
+        margin-bottom: 10px;
+        color: #488aff;
+        background-color: #488aff;
+        opacity: 1;
+        font-size: 0.9em;
     }
 
 }

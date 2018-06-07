@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DicasPage } from '../dicas/dicas';
 import { AuthProvider } from '../../providers/auth/auth';
+import { HomePage } from '../home/home';
+import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
 
 @IonicPage()
 @Component({
@@ -15,7 +17,7 @@ export class RegistroPage {
   public loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private navCtrl: NavController, 
+    private nav: NavegacaoProvider,
     public navParams: NavParams,
     private auth: AuthProvider,
     private alertCtrl: AlertController,
@@ -25,10 +27,11 @@ export class RegistroPage {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
       });
-    }
+  }
     
-    ionViewDidLoad() {
-    }
+  ionViewDidEnter(){
+    this.loginForm.reset();
+  }
 
   registrar() {
     this.auth.criarUsuarioComEmailESenha(
@@ -42,13 +45,17 @@ export class RegistroPage {
         });
   }
 
+  voltar() {
+    this.nav.setRoot(HomePage);
+  }
+
   private trataSucesso(data) {
     this.toastCtrl.create({
       message: 'Cadastro realizado com sucesso.',
       duration: 3000,
       position: 'bottom'
     }).present();
-    this.navCtrl.setRoot(DicasPage);
+    this.nav.setRoot(DicasPage);
   }
 
   private trataErro(error) {

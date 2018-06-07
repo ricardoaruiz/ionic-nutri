@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthProvider } from '../../providers/auth/auth';
+import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,7 @@ export class DicasPage {
 
   public email: string;
 
-  constructor(private navCtrl: NavController, 
+  constructor(private nav: NavegacaoProvider, 
               private auth: AuthProvider) {
     this.email = this.auth.getUsuarioLogado().email;
   }
@@ -24,7 +25,7 @@ export class DicasPage {
   sair() {
     this.auth.logoff()
       .then( () => {
-        this.navCtrl.setRoot(HomePage);
+        this.nav.setRoot(HomePage);
       })
       .catch( (error) => {
         console.log('Erro ao realizar o logoff');

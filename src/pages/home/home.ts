@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ToastController, AlertController, LoadingController } from 'ionic-angular';
+import { ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { DicasPage } from '../dicas/dicas';
 import { RegistroPage } from '../registro/registro';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
+import { NavegacaoProvider } from './../../providers/navegacao/navegacao';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +15,7 @@ export class HomePage {
   public loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private navCtrl: NavController,
+              private navegacao: NavegacaoProvider,
               private auth: AuthProvider,
               private alertCtrl: AlertController,
               private toastCtrl: ToastController,
@@ -23,13 +24,17 @@ export class HomePage {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
-    });                
+    }); 
+  }
+
+  ionViewDidEnter(){
+    this.loginForm.reset();
   }
 
   entrar() {
 
     let loading = this.loadingCtrl.create({
-      content: 'Validando...',
+      content: 'Carregando...',
     });
 
     loading.present();
@@ -48,11 +53,11 @@ export class HomePage {
   }
 
   registrar() {
-    this.navCtrl.push(RegistroPage);
+    this.navegacao.setRoot(RegistroPage);
   }
 
   private trataSucesso(sucesso) {
-    this.navCtrl.setRoot(DicasPage);
+    this.navegacao.setRoot(DicasPage, false);
   }
 
   private trataErro(erro) {
