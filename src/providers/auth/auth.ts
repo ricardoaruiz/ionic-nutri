@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { User } from 'firebase';
+import { AlertController } from 'ionic-angular';
 
 
 @Injectable()
 export class AuthProvider {
 
-  constructor(private fireAuth: AngularFireAuth) {
+  constructor(private fireAuth: AngularFireAuth,
+              private alertCtrl: AlertController) {
     
   }
 
@@ -48,6 +50,60 @@ export class AuthProvider {
    */
   public criarUsuarioComEmailESenha(email: string, senha: string) : Promise<any> {
     return this.fireAuth.auth.createUserWithEmailAndPassword(email, senha);
+  }
+
+  public trataErroLogin(erro) {
+    let mensagemErro: string;
+
+    switch (erro.code) {
+      case 'auth/invalid-email':
+        mensagemErro = 'O email informado não é válido.';
+        break;    
+      case 'auth/user-disabled':
+        mensagemErro = 'O usuário informado não está ativo.';
+        break;
+      case 'auth/user-not-found':
+      case 'auth/wrong-password':
+        mensagemErro = 'Email ou senha informados são inválidos';
+        break;
+      default:
+        mensagemErro = 'Erro inesperado. Tente novamente mais tarde.';
+        break;
+    }
+
+    this.alertCtrl.create({
+      message: mensagemErro,
+      title: 'Login',
+      buttons: ['Ok']
+    }).present();
+  }
+
+  public trataErroCadastroEmailSenha(erro) {
+    let mensagemErro: string;
+
+    switch (erro.code) {
+      case 'auth/email-already-in-use':
+        mensagemErro = 'O email informado já existe no cadastro.';
+        break;
+      case 'auth/invalid-email':
+        mensagemErro = 'O email informado não é válido.';
+        break;
+      case 'auth/operation-not-allowed':
+        mensagemErro = 'Método de cadastro não habilitado.';
+        break;
+      case 'auth/weak-password':
+        mensagemErro = 'A senha informada não é forte o suficiente.';
+        break;
+      default:
+        mensagemErro = 'Ocorreu um erro inesperado. Tente mais tarde.';
+        break;
+    }
+
+    this.alertCtrl.create({
+      title: 'Cadastro',
+      message: mensagemErro,
+      buttons: ['Ok']
+    }).present();
   }
 
 }

@@ -8,7 +8,7 @@ export class NavegacaoProvider {
 
   constructor(private app: App,
               private loadCtrl: LoadingController) {
-    this.nav = app.getActiveNav();
+    this.nav = this.app.getActiveNav();
   }
 
   /**

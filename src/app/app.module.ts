@@ -10,7 +10,6 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DicasPageModule } from '../pages/dicas/dicas.module';
-import { DicasPage } from '../pages/dicas/dicas';
 import { RegistroPageModule } from '../pages/registro/registro.module';
 import { AuthProvider } from '../providers/auth/auth';
 import { NavegacaoProvider } from '../providers/navegacao/navegacao';
