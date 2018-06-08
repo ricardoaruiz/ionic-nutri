@@ -1,0 +1,23 @@
+<ion-content padding>
+  <div padding ion-fixed>  
+      <img class="logo" src="assets/imgs/CursoLogo.png" />
+
+      <h2>Recuperar Senha</h2>
+      <form [formGroup]="recuperarSenhaForm">
+        <ion-item >
+          <ion-label>
+            <ion-icon name="person"></ion-icon>
+            E-mail
+          </ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="recuperarSenhaForm.controls['email'].touched && recuperarSenhaForm.controls['email'].errors">
+          <ion-label class="msg-validacao" *ngIf="recuperarSenhaForm.controls['email'].errors.required">Email obrigatório</ion-label>
+          <ion-label class="msg-validacao" *ngIf="!recuperarSenhaForm.controls['email'].errors.required && recuperarSenhaForm.controls['email'].errors.email">Email inválido</ion-label>
+        </ion-item>
+
+        <button ion-button block class="botao" (click)="recuperarSenha()" [disabled]="!recuperarSenhaForm.valid">Ok</button>
+        <button ion-button block class="botao" (click)="voltar()">Voltar</button>
+      </form>
+  </div>
+</ion-content>

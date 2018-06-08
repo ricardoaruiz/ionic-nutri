@@ -8,7 +8,7 @@
       <ion-item >
         <ion-label>
           <ion-icon name="person"></ion-icon>
-          Usuário
+          E-mail
         </ion-label>
         <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
@@ -30,7 +30,7 @@
 
       <button ion-button block class="botao" (click)="entrar()" [disabled]="!loginForm.valid">Ok</button>
       <p class="textos"><a (click)="registrar()">Cadastre-se</a></p>
-      <p class="textos"><a (click)="registrar()">Esqueci minha senha</a></p>
+      <p class="textos"><a (click)="recuperarSenha()">Esqueci minha senha</a></p>
 
     </form>
   </div>

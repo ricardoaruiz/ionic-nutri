@@ -44,6 +44,13 @@ export class AuthProvider {
   }
 
   /**
+   * Envia o email para recuperação de senha
+   */
+  public recuperarSenha(email: string): Promise<any> {    
+    return this.fireAuth.auth.sendPasswordResetEmail(email);
+  }
+
+  /**
    * Cria um usuário no Firebase utilizando o método Email e Senha.
    * @param email 
    * @param senha 
@@ -52,6 +59,10 @@ export class AuthProvider {
     return this.fireAuth.auth.createUserWithEmailAndPassword(email, senha);
   }
 
+  /**
+   * Trata os erros do login
+   * @param erro 
+   */
   public trataErroLogin(erro) {
     let mensagemErro: string;
 
@@ -78,6 +89,10 @@ export class AuthProvider {
     }).present();
   }
 
+  /**
+   * Trata os erros do cadastro de usuário utilizando Email e senha.
+   * @param erro 
+   */
   public trataErroCadastroEmailSenha(erro) {
     let mensagemErro: string;
 
@@ -104,6 +119,32 @@ export class AuthProvider {
       message: mensagemErro,
       buttons: ['Ok']
     }).present();
+  }
+
+  /**
+   * Trata os erros do envio de email para recuperar a senha.
+   * @param erro 
+   */
+  public trataErroEnvioEmailResetSenha(erro) {
+    let mensagemErro: string;
+
+    switch (erro.code) {
+      case 'auth/invalid-email':
+        mensagemErro = 'O email informado não é válido.';
+        break;
+      case 'auth/user-not-found':
+        mensagemErro = 'O email informado não foi encontrado.';
+        break;
+      default:
+        mensagemErro = 'Ocorreu um erro inesperado. Tente mais tarde.';
+        break;
+    }
+
+    this.alertCtrl.create({
+      title: 'Cadastro',
+      message: mensagemErro,
+      buttons: ['Ok']
+    }).present();    
   }
 
 }

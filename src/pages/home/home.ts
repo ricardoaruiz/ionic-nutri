@@ -7,6 +7,7 @@ import { DicasPage } from '../dicas/dicas';
 
 import { AuthProvider } from '../../providers/auth/auth';
 import { NavegacaoProvider } from './../../providers/navegacao/navegacao';
+import { RecuperarSenhaPage } from '../recuperar-senha/recuperar-senha';
 
 @Component({
   selector: 'page-home',
@@ -54,6 +55,10 @@ export class HomePage {
 
   registrar() {
     this.navegacao.setRoot(RegistroPage);
+  }
+
+  recuperarSenha() {
+    this.navegacao.setRoot(RecuperarSenhaPage);
   }
 
 }

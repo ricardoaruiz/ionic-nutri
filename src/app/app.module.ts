@@ -4,13 +4,18 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+// Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+// Paginas
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DicasPageModule } from '../pages/dicas/dicas.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
+import { RecuperarSenhaPageModule } from '../pages/recuperar-senha/recuperar-senha.module';
+
+// Providers
 import { AuthProvider } from '../providers/auth/auth';
 import { NavegacaoProvider } from '../providers/navegacao/navegacao';
 
@@ -32,6 +37,7 @@ const firebaseConfig = {
     BrowserModule,
     DicasPageModule,
     RegistroPageModule,
+    RecuperarSenhaPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp)
