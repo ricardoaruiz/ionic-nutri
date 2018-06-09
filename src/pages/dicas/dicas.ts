@@ -11,11 +11,26 @@ import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
 })
 export class DicasPage {
 
-  public email: string;
+  public fotoPerfil: boolean = false;
+
+  public facebook = {
+    nome: '',
+    email: '',
+    fotoUrl: ''
+  }
 
   constructor(private nav: NavegacaoProvider, 
               private auth: AuthProvider) {
-    this.email = this.auth.getUsuarioLogado().email;
+    this.facebook.email = this.auth.getUsuarioLogado().email;
+    this.facebook.nome = this.auth.getUsuarioLogado().displayName;
+    this.facebook.fotoUrl = this.auth.getUsuarioLogado().photoURL;
+
+    if (this.facebook.fotoUrl === null) {
+      this.fotoPerfil = false;
+    } else {
+      this.fotoPerfil = true;
+    }
+
   }
 
   ionViewDidLoad() {

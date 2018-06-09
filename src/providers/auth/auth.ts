@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AlertController } from 'ionic-angular';
 
-import firebase from 'firebase';
+import firebase, { FirebaseError } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
 
@@ -71,7 +71,7 @@ export class AuthProvider {
    * Trata os erros do login
    * @param erro 
    */
-  public trataErroLogin(erro) {
+  public trataErroLogin(erro: FirebaseError) {
     let mensagemErro: string;
 
     switch (erro.code) {
@@ -101,7 +101,7 @@ export class AuthProvider {
    * Trata os erros do cadastro de usuário utilizando Email e senha.
    * @param erro 
    */
-  public trataErroCadastroEmailSenha(erro) {
+  public trataErroCadastroEmailSenha(erro: FirebaseError) {
     let mensagemErro: string;
 
     switch (erro.code) {
@@ -133,7 +133,7 @@ export class AuthProvider {
    * Trata os erros do envio de email para recuperar a senha.
    * @param erro 
    */
-  public trataErroEnvioEmailResetSenha(erro) {
+  public trataErroEnvioEmailResetSenha(erro: FirebaseError) {
     let mensagemErro: string;
 
     switch (erro.code) {

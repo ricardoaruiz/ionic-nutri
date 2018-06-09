@@ -11,5 +11,18 @@
 
 
 <ion-content padding>
-  {{email}}
+  <ion-item *ngIf="fotoPerfil">
+    <ion-thumbnail item-left>
+      <img src="{{facebook.fotoUrl}}">
+    </ion-thumbnail>
+    <h2>{{facebook.nome}}</h2>
+    <h2>{{facebook.email}}</h2>    
+  </ion-item>
+  <ion-item *ngIf="!fotoPerfil">
+    <ion-thumbnail item-left>
+      <img src="assets/imgs/fotoPerfil.png">
+    </ion-thumbnail>
+    <h2>Nutri Brasil</h2>
+    <h2>{{facebook.email}}</h2>    
+  </ion-item>
 </ion-content>
