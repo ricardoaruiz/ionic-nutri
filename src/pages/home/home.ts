@@ -24,7 +24,7 @@ export class HomePage {
 
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]]
     }); 
   }
 
@@ -32,7 +32,7 @@ export class HomePage {
     this.loginForm.reset();
   }
 
-  entrar() {
+  loginEmail() {
 
     let loading = this.loadingCtrl.create({
       content: 'Carregando...',
@@ -51,6 +51,17 @@ export class HomePage {
           this.auth.trataErroLogin(erro);
           loading.dismiss();
         });
+  }
+
+  loginFacebook() {
+    this.auth.loginComFacebook()
+      .then ( (data) => {
+        this.navegacao.setRoot(DicasPage);
+        console.log(data);
+      })
+      .catch ( (erro) => {
+        console.log(erro);
+      });
   }
 
   registrar() {

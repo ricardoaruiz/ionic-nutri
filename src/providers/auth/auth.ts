@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import { User } from 'firebase';
 import { AlertController } from 'ionic-angular';
 
+import firebase from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { User } from 'firebase';
 
 @Injectable()
 export class AuthProvider {
@@ -20,6 +21,13 @@ export class AuthProvider {
    */
   public loginComEmail(email: string, senha: string): Promise<any> {
     return this.fireAuth.auth.signInWithEmailAndPassword(email, senha);
+  }
+  
+  /**
+   * Faz o login com o facebook
+   */
+  public loginComFacebook(): Promise<any> {
+    return this.fireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
   }
 
   /**
