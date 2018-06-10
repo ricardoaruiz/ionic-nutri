@@ -3,11 +3,11 @@ import { LoadingController } from 'ionic-angular';
 import { RegistroPage } from '../registro/registro';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { DicasPage } from '../dicas/dicas';
+import { HomePage } from '../home/home';
+import { RecuperarSenhaPage } from '../recuperar-senha/recuperar-senha';
 
 import { AuthProvider } from '../../providers/auth/auth';
 import { NavegacaoProvider } from './../../providers/navegacao/navegacao';
-import { RecuperarSenhaPage } from '../recuperar-senha/recuperar-senha';
 
 @Component({
   selector: 'page-login',
@@ -44,7 +44,7 @@ export class LoginPage {
       this.loginForm.get('email').value, 
       this.loginForm.get('password').value)
         .then( (sucesso) => {
-          this.navegacao.setRoot(DicasPage, false);
+          this.navegacao.setRoot(HomePage, false);
           loading.dismiss();
         })
         .catch( (erro) => {
@@ -56,7 +56,7 @@ export class LoginPage {
   loginFacebook() {
     this.auth.loginComFacebook()
       .then ( (data) => {
-        this.navegacao.setRoot(DicasPage);
+        this.navegacao.setRoot(HomePage);
       })
       .catch ( (erro) => {
         this.auth.trataErroLoginComFacebook(erro);
@@ -67,7 +67,7 @@ export class LoginPage {
     this.auth.loginVisitante()
       .then( data => {
         console.log('loginVisitante', data);
-        this.navegacao.setRoot(DicasPage);
+        this.navegacao.setRoot(HomePage);
       })
       .catch( erro => {
         this.auth.trataErroLoginVisitante(erro);

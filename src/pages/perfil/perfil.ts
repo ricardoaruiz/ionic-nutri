@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { NavegacaoProvider } from './../../providers/navegacao/navegacao';
-import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -19,8 +17,7 @@ export class PerfilPage {
     fotoUrl: ''
   }
 
-  constructor(private nav: NavegacaoProvider,
-              private auth: AuthProvider) {
+  constructor(private auth: AuthProvider) {
     this.facebook.email = this.auth.getUsuarioLogado().email;
     this.facebook.nome = this.auth.getUsuarioLogado().displayName;
     this.facebook.fotoUrl = this.auth.getUsuarioLogado().photoURL;
@@ -34,10 +31,6 @@ export class PerfilPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PerfilPage');
-  }
-
-  public voltar() {
-    this.nav.setRoot(LoginPage);
   }
 
 }

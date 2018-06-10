@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Nutri Brasil</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="sair()">
+        <ion-icon name="exit"></ion-icon>
+      </button>
+    </ion-buttons>    
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-tabs>
+    <ion-tab tabIcon="bulb" tabTitle="Dicas" [root]="dicasPage" ></ion-tab>
+    <ion-tab tabIcon="person" tabTitle="Perfil" [root]="perfilPage" ></ion-tab>    
+  </ion-tabs>
+</ion-content>

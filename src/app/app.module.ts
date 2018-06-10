@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 // Paginas
 import { MyApp } from './app.component';
 
+import { HomePageModule } from './../pages/home/home.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { DicasPageModule } from '../pages/dicas/dicas.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
@@ -36,6 +37,7 @@ const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    HomePageModule,
     DicasPageModule,
     LoginPageModule,
     RegistroPageModule,
