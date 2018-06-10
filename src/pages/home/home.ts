@@ -48,7 +48,7 @@ export class HomePage {
           loading.dismiss();
         })
         .catch( (erro) => {
-          this.auth.trataErroLogin(erro);
+          this.auth.trataErroLoginEmail(erro);
           loading.dismiss();
         });
   }
@@ -57,10 +57,20 @@ export class HomePage {
     this.auth.loginComFacebook()
       .then ( (data) => {
         this.navegacao.setRoot(DicasPage);
-        console.log(data);
       })
       .catch ( (erro) => {
-        console.log(erro);
+        this.auth.trataErroLoginComFacebook(erro);
+      });
+  }
+
+  loginVisitante() {
+    this.auth.loginVisitante()
+      .then( data => {
+        console.log('loginVisitante', data);
+        this.navegacao.setRoot(DicasPage);
+      })
+      .catch( erro => {
+        this.auth.trataErroLoginVisitante(erro);
       });
   }
 

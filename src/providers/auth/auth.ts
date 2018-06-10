@@ -31,6 +31,13 @@ export class AuthProvider {
   }
 
   /**
+   * Faz o login como anônimo
+   */
+  public loginVisitante(): Promise<any> {
+    return this.fireAuth.auth.signInAnonymously();
+  }
+
+  /**
    * Faz o logoff do Firebase
    */
   public logoff() : Promise<any> {
@@ -71,7 +78,7 @@ export class AuthProvider {
    * Trata os erros do login
    * @param erro 
    */
-  public trataErroLogin(erro: FirebaseError) {
+  public trataErroLoginEmail(erro: FirebaseError) {
     let mensagemErro: string;
 
     switch (erro.code) {
@@ -154,5 +161,67 @@ export class AuthProvider {
       buttons: ['Ok']
     }).present();    
   }
+
+  public trataErroLoginComFacebook(erro: FirebaseError) {
+    let mensagemErro: string;
+
+    switch (erro.code) {
+      case 'auth/account-exists-with-different-credential':
+        mensagemErro = 'Já existe uma conta com o email (verificar o tratamento a ser feito)';
+        break;
+      case 'auth/auth-domain-config-required':
+        mensagemErro = 'Erro nas configurações de autenticação do aplicativo. Informe o problema.';
+        break;
+      case 'auth/cancelled-popup-request':
+        mensagemErro = 'Mais de uma requisição foi realizada. Por favor faça a requisição e aguarde o resultado.';
+        break;
+      case 'auth/operation-not-allowed':
+        mensagemErro = 'Tipo de autenticação não habilitado. Informe o problema.';
+        break;
+      case 'auth/operation-not-supported-in-this-environment':
+        mensagemErro = 'Ambiente não suportado para o tipo de autenticação utilizada.';
+        break;
+      case 'auth/popup-blocked':
+        mensagemErro = 'Verifique se o seu browser não está bloqueando a abertura de popups.';
+        break;
+      case 'auth/popup-closed-by-user':
+        mensagemErro = 'O processo de autenticação foi interrompido pelo usuário.';
+        break;
+      case 'auth/unauthorized-domain':
+        mensagemErro = 'O domínio do aplicativo não está autorizado. Informe o problema.';
+        break;
+      default:
+        mensagemErro = 'Ocorreu um erro inesperado. Tente mais tarde.';
+        break;
+    }
+
+    this.alertCtrl.create({
+      title: 'Cadastro',
+      message: mensagemErro,
+      buttons: ['Ok']
+    }).present();     
+  }
+
+  /**
+   * Trata os erros do login com usuário anonimo
+   * @param erro 
+   */
+  public trataErroLoginVisitante(erro: FirebaseError) {
+    let mensagemErro: string;
+
+    switch (erro.code) {
+      case 'auth/operation-not-allowed':
+        mensagemErro = 'O método de login como anônimo não está permitido no momento.';
+      default:
+        mensagemErro = 'Ocorreu um erro inesperado. Tente mais tarde.';
+        break;
+    }
+
+    this.alertCtrl.create({
+      title: 'Cadastro',
+      message: mensagemErro,
+      buttons: ['Ok']
+    }).present();    
+  }  
 
 }
