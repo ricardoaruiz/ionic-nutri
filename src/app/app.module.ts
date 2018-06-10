@@ -10,7 +10,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 // Paginas
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
+import { LoginPageModule } from '../pages/login/login.module';
 import { DicasPageModule } from '../pages/dicas/dicas.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
 import { RecuperarSenhaPageModule } from '../pages/recuperar-senha/recuperar-senha.module';
@@ -31,12 +32,12 @@ const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
     DicasPageModule,
+    LoginPageModule,
     RegistroPageModule,
     RecuperarSenhaPageModule,
     PerfilPageModule,
@@ -46,8 +47,7 @@ const firebaseConfig = {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,
+    MyApp
   ],
   providers: [
     StatusBar,

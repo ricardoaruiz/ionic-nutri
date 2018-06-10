@@ -28,8 +28,10 @@
           <ion-label class="msg-validacao">A senha deve conter 6 caracteres</ion-label>
       </ion-item>
 
-      <button ion-button block class="botao" (click)="registrar()" [disabled]="!loginForm.valid">Ok</button>
-      <button ion-button block class="botao" (click)="voltar()">Voltar</button>
+      <div class="buttons">
+        <button ion-button block round (click)="registrar()" [disabled]="!loginForm.valid">Ok</button>
+        <button ion-button block round (click)="voltar()">Voltar</button>
+      </div>
     </form>
   </div>
 </ion-content>

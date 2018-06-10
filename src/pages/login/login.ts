@@ -10,10 +10,10 @@ import { NavegacaoProvider } from './../../providers/navegacao/navegacao';
 import { RecuperarSenhaPage } from '../recuperar-senha/recuperar-senha';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-login',
+  templateUrl: 'login.html'
 })
-export class HomePage {
+export class LoginPage {
 
   public loginForm: FormGroup;
 

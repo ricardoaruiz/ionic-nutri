@@ -21,9 +21,12 @@ page-registro {
         padding-top: 20px;
     }
 
-    .botao {
+    .buttons {
         margin-top: 20px;
-        border-radius: 30px;
+
+        button {
+            margin-top: 10px;
+        }
     }
 
     ion-item {

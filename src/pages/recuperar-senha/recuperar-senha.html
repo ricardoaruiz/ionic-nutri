@@ -16,8 +16,10 @@
           <ion-label class="msg-validacao" *ngIf="!recuperarSenhaForm.controls['email'].errors.required && recuperarSenhaForm.controls['email'].errors.email">Email inválido</ion-label>
         </ion-item>
 
-        <button ion-button block class="botao" (click)="recuperarSenha()" [disabled]="!recuperarSenhaForm.valid">Ok</button>
-        <button ion-button block class="botao" (click)="voltar()">Voltar</button>
+        <div class="buttons">
+          <button ion-button block round (click)="recuperarSenha()" [disabled]="!recuperarSenhaForm.valid">Ok</button>
+          <button ion-button block round (click)="voltar()">Voltar</button>
+        </div>
       </form>
   </div>
 </ion-content>

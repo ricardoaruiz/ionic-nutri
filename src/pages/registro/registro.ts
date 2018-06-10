@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 import { DicasPage } from '../dicas/dicas';
 
 import { AuthProvider } from '../../providers/auth/auth';
@@ -46,7 +46,7 @@ export class RegistroPage {
   }
 
   voltar() {
-    this.nav.setRoot(HomePage);
+    this.nav.setRoot(LoginPage);
   }
 
   private trataSucesso(data) {

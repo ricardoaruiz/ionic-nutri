@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
 
@@ -23,7 +23,7 @@ export class DicasPage {
   sair() {
     this.auth.logoff()
       .then( () => {
-        this.nav.setRoot(HomePage);
+        this.nav.setRoot(LoginPage);
       })
       .catch( (error) => {
         console.log('Erro ao realizar o logoff');

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
-import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
@@ -38,7 +38,7 @@ export class RecuperarSenhaPage {
         });
 
         alert.onDidDismiss( data => {
-          this.nav.setRoot(HomePage);
+          this.nav.setRoot(LoginPage);
         });
 
         alert.present();
@@ -50,7 +50,7 @@ export class RecuperarSenhaPage {
   }
 
   voltar() {
-    this.nav.setRoot(HomePage);
+    this.nav.setRoot(LoginPage);
   }
 
 }

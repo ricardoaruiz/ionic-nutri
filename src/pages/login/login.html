@@ -25,22 +25,24 @@
         <ion-input type="password" formControlName="password" maxlength="20"></ion-input>
       </ion-item>
       <ion-item *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors">
-          <ion-label class="msg-validacao">A senha deve conter no mínimo 1 e no máximo 20 caracteres</ion-label>
+          <ion-label class="msg-validacao">A senha deve conter entre 1 e 20 caracteres</ion-label>
       </ion-item>
 
-      <button ion-button block class="botao" (click)="loginEmail()" [disabled]="!loginForm.valid">Login</button>
-      
-      <button ion-button block class="botao" icon-start (click)="loginFacebook()" >
-        <ion-icon name="logo-facebook"></ion-icon>
-        Facebook
-      </button>
+      <div class="buttons">
+        <button ion-button block round (click)="loginEmail()" [disabled]="!loginForm.valid">Login</button>
+        
+        <button ion-button block round icon-start (click)="loginFacebook()" >
+          <ion-icon name="logo-facebook"></ion-icon>
+          Facebook
+        </button>
 
-      <button ion-button block class="botao" icon-start color="danger" (click)="loginVisitante()" >
-        Entrar como visitante
-      </button>
-      
-      <p class="textos"><a (click)="registrar()">Cadastre-se</a></p>
-      <p class="textos"><a (click)="recuperarSenha()">Esqueci minha senha</a></p>
+        <button ion-button block round icon-start color="danger" (click)="loginVisitante()" >
+          Entrar como visitante
+        </button>
+        
+        <p class="textos"><a (click)="registrar()">Cadastre-se</a></p>
+        <p class="textos"><a (click)="recuperarSenha()">Esqueci minha senha</a></p>
+      </div>
 
     </form>
   </div>

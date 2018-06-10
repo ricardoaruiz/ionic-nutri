@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { NavegacaoProvider } from './../../providers/navegacao/navegacao';
-import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -37,7 +37,7 @@ export class PerfilPage {
   }
 
   public voltar() {
-    this.nav.setRoot(HomePage);
+    this.nav.setRoot(LoginPage);
   }
 
 }
