@@ -18,6 +18,7 @@ import { RecuperarSenhaPageModule } from '../pages/recuperar-senha/recuperar-sen
 // Providers
 import { AuthProvider } from '../providers/auth/auth';
 import { NavegacaoProvider } from '../providers/navegacao/navegacao';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAFqjLYrM6wWQKuflEd5BM_fqgbMghqzlQ",
@@ -38,6 +39,7 @@ const firebaseConfig = {
     DicasPageModule,
     RegistroPageModule,
     RecuperarSenhaPageModule,
+    PerfilPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp)
