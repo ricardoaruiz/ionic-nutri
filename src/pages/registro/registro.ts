@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginPage } from '../login/login';
 import { DicasPage } from '../dicas/dicas';
 
-import { AuthProvider } from '../../providers/auth/auth';
-import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
+import { NavegacaoService } from '../../services/navegacao.service';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -18,9 +18,8 @@ export class RegistroPage {
   public loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private nav: NavegacaoProvider,
-    public navParams: NavParams,
-    private auth: AuthProvider,
+    private nav: NavegacaoService,
+    private auth: AuthService,
     private toastCtrl: ToastController) {
 
       this.loginForm = this.formBuilder.group({

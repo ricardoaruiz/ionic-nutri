@@ -3,9 +3,10 @@ import { IonicPage } from 'ionic-angular';
 
 import { DicasPage } from './../dicas/dicas';
 import { PerfilPage } from '../perfil/perfil';
-import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
-import { AuthProvider } from '../../providers/auth/auth';
 import { LoginPage } from '../login/login';
+
+import { NavegacaoService } from '../../services/navegacao.service';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -17,8 +18,8 @@ export class HomePage {
   public dicasPage = DicasPage;
   public perfilPage = PerfilPage
 
-  constructor(private nav: NavegacaoProvider, 
-              private auth: AuthProvider) {
+  constructor(private nav: NavegacaoService, 
+              private auth: AuthService) {
   }
 
   ionViewDidLoad() {

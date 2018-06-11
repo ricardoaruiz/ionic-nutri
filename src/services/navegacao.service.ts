@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NavController, LoadingController, App } from 'ionic-angular';
 
 @Injectable()
-export class NavegacaoProvider {
+export class NavegacaoService {
 
   private nav: NavController;
 

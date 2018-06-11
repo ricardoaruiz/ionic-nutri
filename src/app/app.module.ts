@@ -16,11 +16,11 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { DicasPageModule } from '../pages/dicas/dicas.module';
 import { RegistroPageModule } from '../pages/registro/registro.module';
 import { RecuperarSenhaPageModule } from '../pages/recuperar-senha/recuperar-senha.module';
+import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
 // Providers
-import { AuthProvider } from '../providers/auth/auth';
-import { NavegacaoProvider } from '../providers/navegacao/navegacao';
-import { PerfilPageModule } from '../pages/perfil/perfil.module';
+import { AuthService } from '../services/auth.service';
+import { NavegacaoService } from '../services/navegacao.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAFqjLYrM6wWQKuflEd5BM_fqgbMghqzlQ",
@@ -55,8 +55,8 @@ const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider,
-    NavegacaoProvider
+    AuthService,
+    NavegacaoService
   ]
 })
 export class AppModule {}

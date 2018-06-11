@@ -6,8 +6,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { RecuperarSenhaPage } from '../recuperar-senha/recuperar-senha';
 
-import { AuthProvider } from '../../providers/auth/auth';
-import { NavegacaoProvider } from './../../providers/navegacao/navegacao';
+import { NavegacaoService } from '../../services/navegacao.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'page-login',
@@ -18,8 +18,8 @@ export class LoginPage {
   public loginForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private navegacao: NavegacaoProvider,
-              private auth: AuthProvider,
+              private navegacao: NavegacaoService,
+              private auth: AuthService,
               private loadingCtrl: LoadingController) {
 
     this.loginForm = this.formBuilder.group({

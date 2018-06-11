@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavegacaoProvider } from '../../providers/navegacao/navegacao';
+
 import { LoginPage } from '../login/login';
-import { AuthProvider } from '../../providers/auth/auth';
+
+import { NavegacaoService } from '../../services/navegacao.service';
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -15,8 +17,8 @@ export class RecuperarSenhaPage {
   public recuperarSenhaForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private nav: NavegacaoProvider,
-              private auth: AuthProvider,
+              private nav: NavegacaoService,
+              private auth: AuthService,
               private alertCtrl: AlertController) {
 
     this.recuperarSenhaForm = formBuilder.group({

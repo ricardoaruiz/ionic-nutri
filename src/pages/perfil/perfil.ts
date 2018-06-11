@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { AuthProvider } from '../../providers/auth/auth';
+
+import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class PerfilPage {
     fotoUrl: ''
   }
 
-  constructor(private auth: AuthProvider) {
+  constructor(private auth: AuthService) {
     this.facebook.email = this.auth.getUsuarioLogado().email;
     this.facebook.nome = this.auth.getUsuarioLogado().displayName;
     this.facebook.fotoUrl = this.auth.getUsuarioLogado().photoURL;

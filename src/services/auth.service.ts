@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
 
 @Injectable()
-export class AuthProvider {
+export class AuthService {
 
   constructor(private fireAuth: AngularFireAuth,
               private alertCtrl: AlertController) {
