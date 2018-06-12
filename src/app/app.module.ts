@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpModule } from '@angular/http';
 
 // Firebase
 import { AngularFireModule } from 'angularfire2';
@@ -18,9 +19,10 @@ import { RegistroPageModule } from '../pages/registro/registro.module';
 import { RecuperarSenhaPageModule } from '../pages/recuperar-senha/recuperar-senha.module';
 import { PerfilPageModule } from '../pages/perfil/perfil.module';
 
-// Providers
+// Services
 import { AuthService } from '../services/auth.service';
 import { NavegacaoService } from '../services/navegacao.service';
+import { WordpressService } from '../services/wordpress.service';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAFqjLYrM6wWQKuflEd5BM_fqgbMghqzlQ",
@@ -38,6 +40,7 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     HomePageModule,
+    HttpModule,
     DicasPageModule,
     LoginPageModule,
     RegistroPageModule,
@@ -56,7 +59,8 @@ const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    NavegacaoService
+    NavegacaoService,
+    WordpressService
   ]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import * as Config from '../config';
+import { Post } from './model/post.model';
 
 @Injectable()
 export class WordpressService {
@@ -10,12 +11,18 @@ export class WordpressService {
 
     }
 
-    public obtemPostsRecentes(page: number = 1) {
+    public obtemPostsRecentes(page: number = 1): Observable<Post[]> {
         return this.http.get(Config.WORDPRESS_REST_API_URL + 'posts?page=' + page)
-            .map( res => res.json() );
+            .map( res => res.json()
+                .map( 
+                    (post) => {
+                        return new Post().deserialize(post);
+                    }
+                )
+            );
     }
 
-    public obtemAutor(autor) {
+    public obtemAutor(autor): Observable<any> {
         return this.http.get(Config.WORDPRESS_REST_API_URL + 'users/' + autor)
             .map( res => res.json() );
     }
