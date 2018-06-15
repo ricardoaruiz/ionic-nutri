@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AlertController } from 'ionic-angular';
+import { AlertController, Platform } from 'ionic-angular';
 
 import firebase, { FirebaseError } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 @Injectable()
 export class AuthService {
 
   constructor(private fireAuth: AngularFireAuth,
+              private facebook: Facebook,
+              private platform: Platform,
               private alertCtrl: AlertController) {
     
   }
@@ -27,7 +30,14 @@ export class AuthService {
    * Faz o login com o facebook
    */
   public loginComFacebook(): Promise<any> {
-    return this.fireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    if (this.platform.is('cordova')) {
+      return this.facebook.login(['public_profile','email'])
+      .then( (result: FacebookLoginResponse) => {
+        return this.fireAuth.auth.signInWithCredential(firebase.auth.FacebookAuthProvider.credential(result.authResponse.accessToken));
+      });
+    } else {
+      return this.fireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    }
   }
 
   /**
@@ -40,8 +50,17 @@ export class AuthService {
   /**
    * Faz o logoff do Firebase
    */
-  public logoff() : Promise<any> {
-    return this.fireAuth.auth.signOut();
+  public logoff() {
+    return this.facebook.logout()
+      .then (() => {
+        return this.fireAuth.auth.signOut();
+      })
+      .catch( error => {
+        if (error === 'cordova_not_available') {
+          return this.fireAuth.auth.signOut();
+        }
+        Promise.reject(error);
+      })
   }
 
   /**

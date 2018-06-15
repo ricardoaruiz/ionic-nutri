@@ -54,13 +54,13 @@ export class LoginPage {
   }
 
   loginFacebook() {
-    this.auth.loginComFacebook()
+      this.auth.loginComFacebook()
       .then ( (data) => {
         this.navegacao.setRoot(HomePage);
       })
       .catch ( (erro) => {
         this.auth.trataErroLoginComFacebook(erro);
-      });
+      });      
   }
 
   loginVisitante() {
