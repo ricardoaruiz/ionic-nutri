@@ -1,3 +1,7 @@
+**Roda o app no device com hot deploy ligado**
+
+    ionic cordova run android --livereload
+
 **Angular Fire**
 
     https://github.com/angular/angularfire2

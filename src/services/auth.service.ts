@@ -56,7 +56,7 @@ export class AuthService {
         return this.fireAuth.auth.signOut();
       })
       .catch( error => {
-        if (error === 'cordova_not_available') {
+        if (error === 'cordova_not_available' || error === 'No valid session found, must call init and login before logout.') {
           return this.fireAuth.auth.signOut();
         }
         Promise.reject(error);
