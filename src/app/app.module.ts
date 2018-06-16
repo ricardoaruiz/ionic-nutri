@@ -25,6 +25,7 @@ import { PerfilPageModule } from '../pages/perfil/perfil.module';
 import { AuthService } from '../services/auth.service';
 import { NavegacaoService } from '../services/navegacao.service';
 import { WordpressService } from '../services/wordpress.service';
+import { PostPageModule } from '../pages/post/post.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAFqjLYrM6wWQKuflEd5BM_fqgbMghqzlQ",
@@ -48,6 +49,7 @@ const firebaseConfig = {
     RegistroPageModule,
     RecuperarSenhaPageModule,
     PerfilPageModule,
+    PostPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp)

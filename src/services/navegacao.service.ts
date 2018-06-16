@@ -16,11 +16,11 @@ export class NavegacaoService {
    * @param page 
    * @param showLoading 
    */
-  public push(page: any, showLoading: boolean = true) {
+  public push(page: any, params? : any, showLoading: boolean = true) {
     if (showLoading) {
       let load = this.loadCtrl.create({content: 'Carregando...'});
       load.present();
-      this.nav.push(page).then( () => {
+      this.nav.push(page, params).then( () => {
         load.dismiss();
       });
     } else {
@@ -33,11 +33,11 @@ export class NavegacaoService {
    * @param page 
    * @param showLoading 
    */
-  public setRoot(page: any, showLoading: boolean = true) {
+  public setRoot(page: any, params?: any, showLoading: boolean = true) {
     if (showLoading) {
       let load = this.loadCtrl.create({content: 'Carregando...'});
       load.present();
-      this.nav.setRoot(page).then( () => {
+      this.nav.setRoot(page, params).then( () => {
         load.dismiss();
       });
     } else {

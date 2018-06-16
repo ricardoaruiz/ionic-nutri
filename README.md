@@ -1,3 +1,7 @@
+**URL da API utilizada**
+
+    https://sujeitoprogramador.com/nutriapp/wp-json/wp/v2/posts
+
 **Roda o app no device com hot deploy ligado**
 
     ionic cordova run android --livereload

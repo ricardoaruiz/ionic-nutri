@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, LoadingController } from 'ionic-angular';
 
+import { NavegacaoService } from './../../services/navegacao.service';
 import { WordpressService } from '../../services/wordpress.service';
 import { Post } from '../../services/model/post.model';
+import { PostPage } from '../post/post';
 
 @IonicPage()
 @Component({
@@ -11,10 +13,11 @@ import { Post } from '../../services/model/post.model';
 })
 export class DicasPage {
 
-  posts: any[] = new Array<any>();
+  posts: any[] = new Array<Post>();
   morePagesAvailable: boolean = true;
 
   constructor(private wordpress: WordpressService,
+              private nav: NavegacaoService,
               private loadingCtrl: LoadingController) {
 
   }
@@ -42,6 +45,10 @@ export class DicasPage {
         );
     }
     
+  }
+
+  leiaMais(event, post) {
+    this.nav.push(PostPage, {item: post});
   }
 
 }
