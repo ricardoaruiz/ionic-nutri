@@ -45,4 +45,8 @@ export class NavegacaoService {
     }
   }
 
+  public getActiveComponent() {
+    this.nav.getActive().component;
+  }
+
 }
