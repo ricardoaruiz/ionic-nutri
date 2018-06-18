@@ -41,3 +41,10 @@
         ```
 
     Se pedir a senha é "android"
+
+**Gerando os resources**
+
+    ```
+    ionic cordova resources --icon
+    ionic cordova resources --splash
+    ```
