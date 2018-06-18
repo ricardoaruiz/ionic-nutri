@@ -1,10 +1,13 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title *ngIf="post">Post</ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button  clear (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+        <div class="voltar-txt-btn">Voltar</div>
+      </button>
+    </ion-col>
+  </ion-row>
 
   <div *ngIf="post">
     <div>
@@ -33,5 +36,14 @@
       </ion-row>  
     </ion-grid>
   </div>
+
+  <ion-row>
+    <ion-col>
+      <button ion-button  clear (click)="voltar()">
+        <ion-icon name="arrow-back"></ion-icon>
+        <div class="voltar-txt-btn">Voltar</div>
+      </button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>

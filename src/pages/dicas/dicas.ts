@@ -31,7 +31,7 @@ export class DicasPage {
   }
 
   leiaMais(event, post) {
-    this.nav.push(PostPage, {item: post});
+    this.nav.pushInActiveNav(PostPage, {item: post});
   }
 
   doRefresh(refresher) {

@@ -4,6 +4,8 @@ import { IonicPage, NavParams, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 
 import { WordpressService } from './../../services/wordpress.service';
+import { NavegacaoService } from './../../services/navegacao.service';
+
 import { Post } from '../../services/model/post.model';
 
 @IonicPage()
@@ -17,13 +19,14 @@ export class PostPage {
   public user: string;
   public categories: Array<any> = new Array<any>();
 
-  constructor(public navParams: NavParams,
-              public wordpressService : WordpressService,
-              public loagindCtrl: LoadingController) {
+  constructor(private navParams: NavParams,
+              private nav: NavegacaoService,
+              private wordpressService : WordpressService,
+              private loagindCtrl: LoadingController) {
   }
 
-  ionViewWillEnter(){
-  
+  ionViewDidLoad(){
+    
     let loading = this.loagindCtrl.create({content: 'Carregando...'});
     loading.present();
 
@@ -49,4 +52,7 @@ export class PostPage {
     return this.wordpressService.obtemCategorias(this.post);
   }
 
+  voltar() {
+    this.nav.popFromActiveNav();
+  }
 }

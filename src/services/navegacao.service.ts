@@ -45,8 +45,38 @@ export class NavegacaoService {
     }
   }
 
+  /**
+   * Faz a navegação para o Nav corrente
+   * @param page 
+   * @param params 
+   * @param showLoading 
+   */
+  public pushInActiveNav(page: any, params?: any, showLoading: boolean = true) {
+    if (showLoading) {
+      let load = this.loadCtrl.create({content: 'Carregando...'});
+      load.present();
+      this.getActiveNav().push(page, params).then( () => {
+        load.dismiss();
+      })
+    } else {
+      this.app.getActiveNav().push(page, params);
+    }
+
+  }
+
+  /**
+   * Remove a última pagina da pilha do nav corrente
+   */
+  public popFromActiveNav() {
+    this.getActiveNav().pop();
+  }
+
   public getActiveComponent() {
-    this.nav.getActive().component;
+    return this.nav.getActive().component;
+  }
+
+  public getActiveNav() {
+    return this.app.getActiveNav();
   }
 
 }
