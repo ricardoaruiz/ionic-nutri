@@ -37,7 +37,7 @@ export class WordpressService {
         return Observable.forkJoin(observableBatch);
     }
 
-    public obtemCategoria(categoria) {
+    private obtemCategoria(categoria) {
         return this.http.get(Config.WORDPRESS_REST_API_URL + "categories/" + categoria)
             .map( res => res.json());
     }

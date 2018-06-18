@@ -6,6 +6,7 @@ export class Post implements Deserializable {
     public date: Date;
     public date_gmt: Date;
     public excerpt: {rendered: string, protected: string};
+    public author: number;
     
     deserialize(input: any): this {
       Object.assign(this, input);

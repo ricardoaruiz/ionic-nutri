@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, LoadingController } from 'ionic-angular';
+
+import { Observable } from 'rxjs/Observable';
+
+import { WordpressService } from './../../services/wordpress.service';
+import { Post } from '../../services/model/post.model';
 
 @IonicPage()
 @Component({
@@ -8,13 +13,40 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PostPage {
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams) {
+  public post;
+  public user: string;
+  public categories: Array<any> = new Array<any>();
+
+  constructor(public navParams: NavParams,
+              public wordpressService : WordpressService,
+              public loagindCtrl: LoadingController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PostPage');
-    console.log(this.navParams.data);
+  ionViewWillEnter(){
+  
+    let loading = this.loagindCtrl.create({content: 'Carregando...'});
+    loading.present();
+
+    this.post = this.navParams.get('item');
+
+    Observable.forkJoin(
+      this.obtemDadosAutor(),
+      this.obtemDadosCategorias()
+    ).subscribe( data => {
+      console.log(data);
+      this.user = data[0].name;
+      this.categories = data[1];
+      loading.dismiss();
+    });
+
+  }
+
+  obtemDadosAutor() {
+    return this.wordpressService.obtemAutor(this.post.author);
+  }
+
+  obtemDadosCategorias() {
+    return this.wordpressService.obtemCategorias(this.post);
   }
 
 }
